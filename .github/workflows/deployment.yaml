@@ -13,7 +13,7 @@ jobs:
   data:
     runs-on: ubuntu-latest
     steps:
-      - run: echo ${{ toJson(github.event) }}
+      - run: echo "${{ toJson(github.event) }}"
   test:
     runs-on: ubuntu-latest
     steps:
@@ -26,6 +26,7 @@ jobs:
       - run: npm run lint
       - run: npm run test
   build:
+    needs: test
     runs-on: ubuntu-latest
     outputs:
       file-output-value: ${{ steps.output_id.outputs.file-value }}
